@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 dbConnection();
 
 app.use(cors({
-  origin: 'http://localhost:5174', 
+  origin: 'https://hrms-frontend-fresh.vercel.app', 
   credentials: true,               
 }));
 app.use(express.json());
