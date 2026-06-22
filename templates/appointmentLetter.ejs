@@ -4,148 +4,148 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        @page {
-            size: A4;
-            margin: 0;
-        }
+      @page {
+    size: A4;
+    margin: 0.15in 0.25in;
+}
 
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            color: #1a1a1a;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
 
-        .page-container {
-            padding: 0.5in 0.8in;
-            min-height: 11.6in;
-            position: relative;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            background-color: #fff;
-            margin-top: -100px;
-        }
+.page-container {
+    padding: 0.2in 0.3in;
+    min-height: 10in;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    /* REMOVED: margin-top: -100px; */
+}
 
-        .page-break {
-            page-break-before: always;
-        }
+.page-break {
+    page-break-before: always;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
 
-        .header-table {
-            width: 100%;
-            border-bottom: 4px solid #f27022;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
+.header-table {
+    width: 100%;
+    border-bottom: 4px solid #f27022;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
 
-        .logo-box {
-            width: 300px;
-        }
+.logo-box {
+    width: 250px;
+}
 
-        .logo {
-            width: 100%;
-            height: auto;
-        }
+.logo {
+    width: 100%;
+    height: auto;
+}
 
-        .ref-info {
-            text-align: right;
-            font-size: 14px;
-            color: #444;
-            font-weight: bold;
-        }
+.ref-info {
+    text-align: right;
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+}
 
-        .document-title {
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-            margin: 15px 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+.document-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-        .section-accent {
-            border-left: 5px solid #f27022;
-            padding-left: 15px;
-            margin: 15px 0;
-        }
+.section-accent {
+    border-left: 5px solid #f27022;
+    padding-left: 15px;
+    margin: 15px 0;
+}
 
-        .section-title {
-            font-weight: bold;
-            font-size: 18px;
-            color: #f27022;
-            text-transform: uppercase;
-            margin: 20px 0 10px 0;
-        }
+.section-title {
+    font-weight: bold;
+    font-size: 17px;
+    color: #f27022;
+    text-transform: uppercase;
+    margin: 18px 0 8px 0;
+}
 
-        .content-body {
-            font-size: 15px;
-            text-align: justify;
-        }
+.content-body {
+    font-size: 14px;
+    text-align: justify;
+    flex: 1;
+}
 
-        .recipient-block {
-            font-size: 16px;
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
+.recipient-block {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
 
-        .highlight {
-            font-weight: bold;
-            color: #000;
-        }
+.highlight {
+    font-weight: bold;
+    color: #000;
+}
 
-        .clause-item {
-            margin-bottom: 12px;
-            display: table;
-            width: 100%;
-        }
+.clause-item {
+    margin-bottom: 8px;
+    display: table;
+    width: 100%;
+}
 
-        .clause-num {
-            display: table-cell;
-            width: 45px;
-            font-weight: bold;
-            vertical-align: top;
-        }
+.clause-num {
+    display: table-cell;
+    width: 40px;
+    font-weight: bold;
+    vertical-align: top;
+}
 
-        .clause-text {
-            display: table-cell;
-            vertical-align: top;
-        }
-        
-        .notice-period{
-            margin-top: 30px;
-        }
+.clause-text {
+    display: table-cell;
+    vertical-align: top;
+}
 
-        .footer {
-            position: absolute;
-            
-            bottom: -1.5in;
-            left: 0.8in;
-            right: 0.8in;
-            text-align: center;
-            font-size: 15px;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-            color: #666;
-        }
+.notice-period {
+    margin-top: 20px;
+}
 
-        .signature-wrapper {
-            
-            margin-top: 100px;
-            padding-bottom: 0.6in;
-        }
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    color: #666;
+    width: 100%;
+}
 
-        .sig-table {
-            width: 100%;
-            margin-top: 20px;
-        }
+.signature-wrapper {
+    margin-top: 60px;
+    padding-bottom: 0.2in;
+}
 
-        .signature-line {
-            border-top: 1.5px solid #000;
-            width: 200px;
-            margin-top: 50px;
-            margin-bottom: 5px;
-        }
+.sig-table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.signature-line {
+    border-top: 1.5px solid #000;
+    width: 200px;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
     </style>
 </head>
 
