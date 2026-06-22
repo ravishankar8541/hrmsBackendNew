@@ -36,7 +36,10 @@ const sendAppointmentLetter = async (email, data) => {
 
     // 4. Generate PDF
     const pdfBuffer = await new Promise((resolve, reject) => {
-        pdf.create(html, { format: 'A4', border: '0.4in' }).toBuffer((err, buffer) => {
+        pdf.create(html, { 
+    format: 'A4', 
+    border: { top: '0.25in', right: '0.35in', bottom: '0.25in', left: '0.35in' }
+}).toBuffer((err, buffer) => {
             if (err) reject(err);
             else resolve(buffer);
         });
