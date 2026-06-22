@@ -5,188 +5,180 @@
     <meta charset="UTF-8">
     <style>
         @page {
-            margin: 12mm 10mm;
-            size: A4 portrait;
-        }
+    margin: 8mm 10mm;  /* Reduced from 12mm to 8mm */
+    size: A4 portrait;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            font-size: 12px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+}
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-        /* Header - Company Info (swapped to match PDF: company left, logo right) */
-        .header {
-            margin-top: -40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            /* vertical alignment */
-        }
+/* Header - Company Info */
+.header {
+    margin-top: -30px;  /* Changed from -40px to -30px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .logo {
-            height: 150px;
-            /* keep smaller than header */
-            width: auto;
-            object-fit: contain;
-            margin-bottom: -80px;
+.logo {
+    height: 120px;  /* Reduced from 150px */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 0;  /* REMOVED negative margin */
+}
 
-        }
+.company-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+    margin-bottom: 0;  /* REMOVED 50px margin */
+}
 
-        .company-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-end;
-            /* align text to right */
-            text-align: right;
-            margin-bottom: 50px;
-        }
+.company-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
 
+.company-address {
+    font-size: 10px;
+    color: #333;
+    margin: 3px 0 0;
+}
 
-        .company-name {
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 0;
-        }
+/* Title */
+.title {
+    text-align: center;
+    margin: 5px 0 10px;  /* Reduced from 10px 0 15px */
+}
 
-        .company-address {
-            font-size: 10px;
-            color: #333;
-            margin: 3px 0 0;
-        }
+.title h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px solid #000;
+    padding-bottom: 4px;
+    padding-top: 10px;  /* Reduced from 15px */
+    margin: 5px 0;  /* Added to reduce space */
+}
 
-        /* Title */
-        .title {
-            text-align: center;
-            margin: 10px 0 15px;
-        }
+.title .month {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
 
-        .title h1 {
-            font-size: 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-top: 1px solid #000;
+/* Employee Table */
+.employee-table {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 8px;  /* Reduced from 12px */
+}
 
-            padding-bottom: 4px;
-            padding-top: 15px;
+.employee-table td {
+    padding: 4px 8px;  /* Reduced from 6px 8px */
+    border: 1px solid #000;
+    vertical-align: top;
+}
 
-        }
+.employee-table tr.attendance td {
+    border-top: 1px dashed #666;
+    padding-top: 5px;  /* Reduced from 8px */
+}
 
-        .title .month {
-            font-size: 13px;
-            font-weight: bold;
-            margin-top: 2px;
-            margin-bottom: 5px;
-        }
+/* Salary Table */
+.salary-table {
+    border: 1px solid #000;
+    font-size: 12px;
+    margin: 15px 0;  /* Reduced from 25px */
+}
 
-        /* Employee Information - Exact bordered table layout as in your PDF */
-        .employee-table {
-            width: 100%;
-            border: 1px solid #000;
-            border-collapse: collapse;
-            font-size: 12px;
-            margin-bottom: 12px;
-        }
+.salary-table th {
+    background: #000;
+    color: #fff;
+    padding: 4px 8px;  /* Reduced from 6px 8px */
+    text-align: left;
+    font-weight: bold;
+}
 
-        .employee-table td {
-            padding: 6px 8px;
-            border: 1px solid #000;
-            vertical-align: top;
-        }
+.salary-table td {
+    padding: 4px 8px;  /* Reduced from 6px 8px */
+    border: 1px solid #ccc;
+}
 
-        /* Attendance row inside the same table (dotted separator line as in PDF) */
-        .employee-table tr.attendance td {
-            border-top: 1px dashed #666;
-            padding-top: 8px;
-        }
+.amount-col {
+    text-align: right;
+    width: 90px;
+}
 
-        /* Salary Table - Exact match to PDF (black header, gray total row) */
-        .salary-table {
-            
-            border: 1px solid #000;
-            font-size: 12px;
-            margin: 25px 0;
-        }
+.total-row {
+    background: #f5f5f5;
+    font-weight: bold;
+}
 
-        .salary-table th {
-            background: #000;
-            color: #fff;
-            padding: 6px 8px;
-            text-align: left;
-            font-weight: bold;
-        }
+/* Net Pay Box */
+.net-pay-box {
+    margin-top: 20px;  /* CHANGED from 120px to 20px */
+    text-align: right;
+}
 
-        .salary-table td {
-            padding: 6px 8px;
-            border: 1px solid #ccc;
-        }
+.net-inner {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    padding: 8px 20px;  /* Reduced from 10px 20px */
+    min-width: 200px;  /* Reduced from 220px */
+    text-align: center;
+}
 
-        .amount-col {
-            text-align: right;
-            width: 90px;
-        }
+.net-value {
+    font-size: 18px;  /* Reduced from 20px */
+    font-weight: bold;
+    margin: 2px 0;
+}
 
-        .total-row {
-            background: #f5f5f5;
-            font-weight: bold;
-        }
+.net-words {
+    font-size: 13px;  /* Reduced from 15px */
+    opacity: 1.9;
+}
 
-        /* Net Pay Box - Exact black box position and text layout as in your PDF */
-        .net-pay-box {
-            margin-top: 120px;
-            text-align: right;
-        }
+/* Signatures - FIXED */
+.signatures {
+    margin-top: 30px;  /* CHANGED from 60px to 30px */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 11px;
+}
 
-        .net-inner {
-            display: inline-block;
-            background: #000;
-            color: #fff;
-            padding: 10px 20px;
-            min-width: 220px;
-            text-align: center;
-        }
+.sig-left,
+.sig-right {
+    width: 40%;
+    text-align: center;
+}
 
-        .net-value {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 2px 0;
-        }
-
-        .net-words {
-            font-size: 15px;
-            opacity: 1.9;
-        }
-
-        /* Signatures */
-        .signatures {
-            margin-top: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            font-size: 11px;
-        }
-
-        .sig-left,
-        .sig-right {
-            width: 40%;
-            text-align: center;
-        }
-
-        .sig-line {
-            border-top: 1px solid #000;
-            margin: 40px auto 8px;
-            width: 80%;
-        }
+.sig-line {
+    border-top: 1px solid #000;
+    margin: 30px auto 8px;  /* Reduced from 40px */
+    width: 80%;
+}
     </style>
 </head>
 
