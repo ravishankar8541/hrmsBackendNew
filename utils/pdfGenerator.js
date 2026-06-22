@@ -43,7 +43,7 @@ const generatePDF = async (data) => {
 
   const options = { 
     format: 'A4', 
-    border: { top: '0px', right: '20mm', bottom: '20mm', left: '20mm' },
+     border: { top: '10mm', right: '15mm', bottom: '10mm', left: '15mm' }
     // Lower quality values can blur logos; keep default or use 300 for print
     type: "pdf",
     quality: "100"
