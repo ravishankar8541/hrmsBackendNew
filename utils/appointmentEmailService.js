@@ -5,10 +5,8 @@ const fs = require('fs');
 const nodemailer = require('nodemailer');
 
 const sendAppointmentLetter = async (email, data) => {
-    // 1. Path to your 4-page template
     const templatePath = path.join(__dirname, '../templates/appointmentLetter.ejs');
 
-    // 2. Load Logo
     let logoBase64 = "";
     try {
         const logoPath = path.join(__dirname, '../assets/blackLogo.png');
@@ -18,7 +16,6 @@ const sendAppointmentLetter = async (email, data) => {
         console.error("Logo missing for Appointment Letter"); 
     }
 
-    // 3. Render HTML with your specific data
     const html = await ejs.renderFile(templatePath, {
         logo: logoBase64,
         offerId: data.offerId,
@@ -34,18 +31,22 @@ const sendAppointmentLetter = async (email, data) => {
         hrName: data.hrName
     });
 
-    // 4. Generate PDF
     const pdfBuffer = await new Promise((resolve, reject) => {
         pdf.create(html, { 
-    format: 'A4', 
-    border: { top: '0.25in', right: '0.35in', bottom: '0.25in', left: '0.35in' }
-}).toBuffer((err, buffer) => {
+            format: 'A4', 
+            border: { 
+                top: '0.25in', 
+                right: '0.35in', 
+                bottom: '0.25in', 
+                left: '0.35in' 
+            },
+            quality: '100'
+        }).toBuffer((err, buffer) => {
             if (err) reject(err);
             else resolve(buffer);
         });
     });
 
-    // 5. Professional Email Template
     const emailHtml = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
         <h2 style="color: #f27022;">Congratulations, ${data.employeeName}!</h2>
@@ -74,15 +75,14 @@ const sendAppointmentLetter = async (email, data) => {
     </div>
     `;
 
-    // 6. Email Transport & Sending
     const transporter = nodemailer.createTransport({
-       host: "smtp.titan.email",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
+        host: "smtp.titan.email",
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
     });
 
     try {
@@ -93,9 +93,11 @@ const sendAppointmentLetter = async (email, data) => {
             html: emailHtml,
             attachments: [{
                 filename: `Appointment_Letter_${data.employeeName.replace(/\s+/g, '_')}.pdf`,
-                content: pdfBuffer
+                content: pdfBuffer,
+                contentType: 'application/pdf'
             }]
         });
+        console.log('Appointment Letter sent successfully to:', email);
     } catch (error) {
         console.error("Email Error:", error);
         throw new Error("Failed to send Appointment Letter email");
