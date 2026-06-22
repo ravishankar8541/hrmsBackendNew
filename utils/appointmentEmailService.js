@@ -35,12 +35,11 @@ const sendAppointmentLetter = async (email, data) => {
         pdf.create(html, { 
             format: 'A4', 
             border: { 
-                top: '0.25in', 
-                right: '0.35in', 
-                bottom: '0.25in', 
-                left: '0.35in' 
-            },
-            quality: '100'
+                top: '0.15in', 
+                right: '0.25in', 
+                bottom: '0.15in', 
+                left: '0.25in' 
+            }
         }).toBuffer((err, buffer) => {
             if (err) reject(err);
             else resolve(buffer);
@@ -51,22 +50,15 @@ const sendAppointmentLetter = async (email, data) => {
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
         <h2 style="color: #f27022;">Congratulations, ${data.employeeName}!</h2>
         <p>Dear <strong>${data.employeeName}</strong>,</p>
-        
-        <p>We are delighted to formally offer you the position of <strong>${data.position}</strong> at <strong>Viral Ads Media</strong>. We were highly impressed with your skills and experience, and we believe you will be a fantastic addition to our team.</p>
-        
-        <p>Please find your official <strong>Appointment Letter (Ref: ${data.offerId})</strong> attached to this email. It outlines the terms of your employment, compensation, and joining details.</p>
-        
+        <p>We are delighted to formally offer you the position of <strong>${data.position}</strong> at <strong>Viral Ads Media</strong>.</p>
+        <p>Please find your official <strong>Appointment Letter (Ref: ${data.offerId})</strong> attached.</p>
         <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #f27022; margin: 20px 0;">
             <strong>Next Steps:</strong><br>
             1. Review the attached document carefully.<br>
             2. Sign and scan the acceptance copy.<br>
-            3. Reply to this email with the signed document by <strong>${new Date(data.joiningDate).toLocaleDateString('en-IN')}</strong>.
+            3. Reply with the signed document by <strong>${new Date(data.joiningDate).toLocaleDateString('en-IN')}</strong>.
         </div>
-        
-        <p>If you have any questions regarding the offer, please feel free to reach out to the HR department at this email address.</p>
-        
         <p>We look forward to welcoming you to the team!</p>
-        
         <p style="margin-top: 30px;">
             Best Regards,<br>
             <strong>HR Department</strong><br>
