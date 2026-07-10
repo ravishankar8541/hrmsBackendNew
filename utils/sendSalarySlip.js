@@ -8,7 +8,6 @@ const sendSalarySlip = async (email, data) => {
   try {
     const templatePath = path.join(__dirname, '../templates/salarySlip.ejs');
 
-    // Load logo as base64
     let logoBase64 = "";
     try {
       const logoPath = path.join(__dirname, '../assets/blackLogo.png');
@@ -16,16 +15,14 @@ const sendSalarySlip = async (email, data) => {
       logoBase64 = `data:image/png;base64,${bitmap.toString('base64')}`;
     } catch (err) {
       console.error("Logo missing at backend/assets/blackLogo.png");
-      // Continue without logo - not fatal
     }
 
-    // Render EJS template with all fields from data (matches frontend & controller)
     const html = await ejs.renderFile(templatePath, {
       logo: logoBase64,
       companyName: 'VIRAL ADS MEDIA',
       companyAddress: 'B-27, Budh Vihar Phase 1, New Delhi-110086',
       payMonth: data.monthYear || '—',
-        netPayWords: data.netPayWords || "",
+      netPayWords: data.netPayWords || "",
       employeeName: data.employeeName || '—',
       employeeId: data.employeeId || '—',
       designation: data.designation || '—',
@@ -33,12 +30,10 @@ const sendSalarySlip = async (email, data) => {
       panNumber: data.panNumber || '—',
       aadharNumber: data.aadharNumber || '—',
       bankAccount: data.bankAccount || '—',
-      ifsc: data.ifsc || '—', 
-      phone: data.phone || '—',                  // optional
-
+      ifsc: data.ifsc || '—',
+      phone: data.phone || '—',
       workingDays: data.workingDays || 30,
       lopDays: data.lopDays || 0,
-
       basicSalary: Number(data.basicSalary || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
       allowance: Number(data.allowance || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
       bonus: Number(data.bonus || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
@@ -48,22 +43,22 @@ const sendSalarySlip = async (email, data) => {
       grossEarnings: Number(data.grossEarnings || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
       totalDeductions: Number(data.totalDeductions || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
       netPayable: Number(data.netPayable || 0).toLocaleString('en-IN', { minimumFractionDigits: 2 }),
-
-      // Optional - can be passed from controller or left blank
       hrName: 'Authorised Signatory'
     });
 
-    // Generate PDF buffer
     const pdfBuffer = await new Promise((resolve, reject) => {
       const options = {
         format: 'A4',
         border: {
-          top: '15mm',
-          right: '15mm',
-          bottom: '15mm',
-          left: '15mm'
+          top: '8mm',
+          right: '10mm',
+          bottom: '8mm',
+          left: '10mm'
         },
-        quality: '100'
+        quality: '100',
+        renderDelay: 1000,  // ADD THIS
+        timeout: 30000,     // ADD THIS
+        zoomFactor: 0.75    // ADD THIS
       };
 
       pdf.create(html, options).toBuffer((err, buffer) => {
@@ -72,12 +67,8 @@ const sendSalarySlip = async (email, data) => {
       });
     });
 
-    // Nodemailer setup
-   
-   
-   
-   const transporter = nodemailer.createTransport({
-       host: "smtp.titan.email",
+    const transporter = nodemailer.createTransport({
+      host: "smtp.titan.email",
       port: 465,
       secure: true,
       auth: {
@@ -86,11 +77,9 @@ const sendSalarySlip = async (email, data) => {
       }
     });
 
-    // Safe filename
     const safeName = (data.employeeName || "Employee").replace(/[^a-zA-Z0-9]/g, '_');
     const safeMonth = (data.monthYear || "Period").replace(/[^a-zA-Z0-9]/g, '-');
 
-    // Send email
     await transporter.sendMail({
       from: `"Viral Ads Media Payroll" <${process.env.EMAIL_USER}>`,
       to: email,
