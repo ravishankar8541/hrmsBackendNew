@@ -18,121 +18,147 @@
             color: #1e293b; 
             background-color: #ffffff;
             margin: 0;
-            padding: 16px 28px 16px 28px;
-            font-size: 10.5px;
-            line-height: 1.35;
+            padding: 0;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 40px 48px;
+            position: relative;
+            background-color: #ffffff;
+            page-break-after: always;
         }
 
         /* Top Accent Bar */
         .top-accent {
-            height: 4px;
+            height: 6px;
             background: linear-gradient(90deg, #f27022 0%, #ff9452 100%);
-            margin: -16px -28px 14px -28px;
+            margin: -40px -48px 32px -48px;
         }
 
         /* Header Layout */
         .header-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 12px;
+            margin-bottom: 36px;
         }
 
         .logo { 
-            height: 40px; 
+            height: 64px; 
             width: auto; 
             object-fit: contain;
         }
 
         .statement-label {
             text-align: right;
-            vertical-align: top;
+            vertical-align: middle;
         }
 
         .statement-title {
-            font-size: 18px;
+            font-size: 24px;
             font-weight: 800;
             color: #0f172a;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin: 0 0 2px 0;
+            letter-spacing: 1px;
+            margin: 0 0 6px 0;
         }
 
         .statement-subtitle {
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 700;
             color: #f27022;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 0 4px 0;
+            letter-spacing: 1.5px;
+            margin: 0 0 8px 0;
         }
 
         .issue-date-badge {
             display: inline-block;
             background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            padding: 2px 6px;
-            font-size: 9.5px;
-            color: #64748b;
-            font-weight: 500;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 11px;
+            color: #475569;
+            font-weight: 600;
         }
 
         /* Section Heading */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+        }
+
         .section-title {
-            font-size: 9.5px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #0f172a;
+        }
+
+        /* Employee Profile Grid Layout */
+        .profile-container {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 11px;
             font-weight: 700;
+            color: #f27022;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            color: #64748b;
-            margin-bottom: 6px;
+            margin-bottom: 14px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 6px;
         }
 
-        /* Employee Info Card */
-        .info-card {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            margin-bottom: 12px;
-        }
-
-        .info-cell {
-            width: 50%;
-            padding: 8px 12px;
-            vertical-align: top;
-        }
-
-        .info-table {
+        .grid-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .info-table td {
-            padding: 2.5px 0;
+        .grid-table td {
+            padding: 7px 0;
             vertical-align: top;
         }
 
-        .label { 
+        .field-label { 
             font-weight: 600; 
             color: #64748b; 
-            width: 110px; 
-            font-size: 10px;
+            width: 32%; 
+            font-size: 11px;
         }
 
-        .val {
+        .field-value {
             color: #0f172a;
-            font-weight: 500;
-            font-size: 10px;
+            font-weight: 600;
+            width: 68%;
+            font-size: 11px;
         }
 
         /* Settlement Table */
         .settlement-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -140,17 +166,17 @@
             background-color: #0f172a;
             color: #ffffff;
             text-align: left;
-            padding: 7px 12px;
+            padding: 12px 18px;
             text-transform: uppercase;
-            font-size: 9.5px;
+            font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
         }
 
         .settlement-table td {
-            padding: 6px 12px;
+            padding: 12px 18px;
             border-bottom: 1px solid #f1f5f9;
-            font-size: 10.5px;
+            font-size: 11.5px;
             color: #334155;
         }
 
@@ -160,75 +186,94 @@
 
         .amount-col { 
             text-align: right; 
-            font-weight: 600; 
+            font-weight: 700; 
             color: #0f172a;
             font-family: 'Segoe UI', monospace;
         }
 
-        .net-payable-row td {
-            background-color: #fff7ed !important;
-            color: #c2410c;
-            border-top: 2px solid #f27022;
-            border-bottom: 2px solid #f27022;
-            padding: 8px 12px;
-            font-weight: 700;
-            font-size: 11px;
+        .net-payable-card {
+            background-color: #fff7ed;
+            border: 2px solid #f27022;
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
         }
 
-        .net-payable-row .amount-col {
-            color: #ea580c;
+        .net-title {
             font-size: 13px;
             font-weight: 800;
+            color: #c2410c;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .net-amount {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ea580c;
+            font-family: 'Segoe UI', monospace;
         }
 
         .note-text {
-            font-size: 9.5px;
-            color: #94a3b8;
+            font-size: 10.5px;
+            color: #64748b;
             font-style: italic;
-            margin: 0 0 14px 0;
-            line-height: 1.3;
+            margin-bottom: 40px;
+            line-height: 1.5;
+            background-color: #f8fafc;
+            padding: 12px 16px;
+            border-left: 3px solid #94a3b8;
+            border-radius: 0 6px 6px 0;
         }
 
         /* Signatures Layout */
-        .signature-table {
+        .signature-container {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 14px;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
 
         .sig-card {
-            width: 200px;
-            background-color: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 6px;
-            padding: 8px 12px;
+            width: 240px;
+            background-color: #ffffff;
+            border: 1px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 16px 20px;
             text-align: center;
         }
 
         .sig-title {
-            font-size: 10.5px;
+            font-size: 12px;
             font-weight: 700;
             color: #0f172a;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
         .sig-dept {
-            font-size: 9.5px;
+            font-size: 10.5px;
             color: #64748b;
         }
 
         .sig-company {
-            font-size: 9.5px;
-            font-weight: 600;
+            font-size: 11px;
+            font-weight: 700;
             color: #f27022;
+            margin-top: 2px;
         }
 
-        /* Footer */
-        .footer {
+        /* Footer Sticky Bottom */
+        .page-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 48px;
+            right: 48px;
             border-top: 1px solid #e2e8f0;
-            padding-top: 8px;
+            padding-top: 12px;
             text-align: center;
-            font-size: 9.5px;
+            font-size: 10.5px;
             color: #64748b;
         }
 
@@ -245,133 +290,151 @@
 </head>
 <body>
 
-    <div class="top-accent"></div>
+    <!-- ================= PAGE 1 ================= -->
+    <div class="page">
+        <div class="top-accent"></div>
 
-    <table class="header-table">
-        <tr>
-            <td style="vertical-align: middle;">
-                <img src="<%= logo %>" class="logo" alt="Viral Ads Media">
-            </td>
-            <td class="statement-label">
-                <div class="statement-subtitle">Viral Ads Media</div>
-                <div class="statement-title">Full & Final Statement</div>
-                <div class="issue-date-badge">Date of Issue: <strong><%= currentDate %></strong></div>
-            </td>
-        </tr>
-    </table>
+        <table class="header-table">
+            <tr>
+                <td style="vertical-align: middle;">
+                    <img src="<%= logo %>" class="logo" alt="Viral Ads Media Logo">
+                </td>
+                <td class="statement-label">
+                    <div class="statement-subtitle">Viral Ads Media</div>
+                    <div class="statement-title">Full & Final Statement</div>
+                    <div class="issue-date-badge">Date of Issue: <strong><%= currentDate %></strong></div>
+                </td>
+            </tr>
+        </table>
 
-    <div class="section-title">Employee & Settlement Details</div>
-    
-    <table class="info-card">
-        <tr>
-            <td class="info-cell" style="border-right: 1px solid #f1f5f9;">
-                <table class="info-table">
+        <div class="section-header">
+            <div class="section-title">01. Employee Profile & Employment Details</div>
+        </div>
+
+        <div class="profile-container">
+            <!-- Card 1: Job & Personal Details -->
+            <div class="card">
+                <div class="card-title">Employment Overview</div>
+                <table class="grid-table">
                     <tr>
-                        <td class="label">Employee Name</td>
-                        <td class="val"><strong><%= employeeName %></strong></td>
+                        <td class="field-label">Employee Name</td>
+                        <td class="field-value"><%= employeeName %></td>
+                        <td class="field-label">Date of Joining</td>
+                        <td class="field-value"><%= dateOfJoining %></td>
                     </tr>
                     <tr>
-                        <td class="label">Employee ID</td>
-                        <td class="val"><%= typeof employeeId !== 'undefined' ? employeeId : 'N/A' %></td>
+                        <td class="field-label">Employee ID</td>
+                        <td class="field-value"><%= typeof employeeId !== 'undefined' ? employeeId : 'N/A' %></td>
+                        <td class="field-label">Last Working Day</td>
+                        <td class="field-value"><%= lastWorkingDay %></td>
                     </tr>
                     <tr>
-                        <td class="label">Designation</td>
-                        <td class="val"><%= typeof designation !== 'undefined' ? designation : 'Employee' %></td>
+                        <td class="field-label">Designation</td>
+                        <td class="field-value"><%= typeof designation !== 'undefined' ? designation : 'Employee' %></td>
+                        <td class="field-label">Contact Number</td>
+                        <td class="field-value"><%= phone %></td>
                     </tr>
                     <tr>
-                        <td class="label">Account No</td>
-                        <td class="val"><%= typeof bankAccount !== 'undefined' ? bankAccount : 'N/A' %></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Address</td>
-                        <td class="val"><%= typeof address !== 'undefined' ? address : 'N/A' %></td>
+                        <td class="field-label">Email Address</td>
+                        <td class="field-value" colspan="3"><%= email %></td>
                     </tr>
                 </table>
-            </td>
-            <td class="info-cell">
-                <table class="info-table">
+            </div>
+
+            <!-- Card 2: Banking & Address Details -->
+            <div class="card">
+                <div class="card-title">Bank Accounts & Residential Address</div>
+                <table class="grid-table">
                     <tr>
-                        <td class="label">Date of Joining</td>
-                        <td class="val"><%= dateOfJoining %></td>
+                        <td class="field-label">Account Number</td>
+                        <td class="field-value"><%= typeof bankAccount !== 'undefined' ? bankAccount : 'N/A' %></td>
+                        <td class="field-label">IFSC Code</td>
+                        <td class="field-value"><%= typeof ifsc !== 'undefined' ? ifsc : 'N/A' %></td>
                     </tr>
                     <tr>
-                        <td class="label">Last Working Day</td>
-                        <td class="val"><%= lastWorkingDay %></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Contact</td>
-                        <td class="val"><%= phone %></td>
-                    </tr>
-                    <tr>
-                        <td class="label">IFSC Code</td>
-                        <td class="val"><%= typeof ifsc !== 'undefined' ? ifsc : 'N/A' %></td>
-                    </tr>
-                    <tr>
-                        <td class="label">Email Address</td>
-                        <td class="val"><%= email %></td>
+                        <td class="field-label">Registered Address</td>
+                        <td class="field-value" colspan="3" style="line-height: 1.6; font-weight: 500;">
+                            <%= typeof address !== 'undefined' ? address : 'N/A' %>
+                        </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
 
-    <div class="section-title">Settlement Breakdown</div>
+        <div class="page-footer">
+            <span class="footer-brand">Viral Ads Media</span> <span class="footer-tagline">| Digital Creative Agency</span> — Page 1 of 2
+        </div>
+    </div>
 
-    <table class="settlement-table">
-        <thead>
-            <tr>
-                <th>Particulars</th>
-                <th style="text-align: right;">Amount (INR)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Pending Salary / Basic Pay</td>
-                <td class="amount-col"><%= pendingSalary %></td>
-            </tr>
-            <tr>
-                <td>Leave Encashment</td>
-                <td class="amount-col"><%= leaveEncashment %></td>
-            </tr>
-            <tr>
-                <td>Bonus / Performance Incentive</td>
-                <td class="amount-col"><%= incentive %></td>
-            </tr>
-            <tr>
-                <td>Other Allowances</td>
-                <td class="amount-col">0.00</td>
-            </tr>
-            <tr>
-                <td style="color: #dc2626; font-weight: 500;">Deductions (TDS/LWP/Notice Recovery)</td>
-                <td class="amount-col" style="color: #dc2626;">- <%= deductions %></td>
-            </tr>
-            <tr class="net-payable-row">
-                <td>NET PAYABLE AMOUNT</td>
-                <td class="amount-col">₹ <%= totalPayable %></td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- ================= PAGE 2 ================= -->
+    <div class="page" style="page-break-before: always;">
+        <div class="top-accent"></div>
 
-    <p class="note-text">
-        * This is an officially generated settlement statement. The net payable amount will be directly credited to the registered bank account details mentioned above.
-    </p>
+        <div class="section-header">
+            <div class="section-title">02. Final Settlement Breakdown</div>
+        </div>
 
-    <table class="signature-table">
-        <tr>
-            <td style="width: 200px;">
-                <div class="sig-card">
-                    <div class="sig-title">Authorized Signatory</div>
-                    <div class="sig-dept">HR & Accounts Department</div>
-                    <div class="sig-company">Viral Ads Media</div>
-                </div>
-            </td>
-            <td></td>
-        </tr>
-    </table>
+        <table class="settlement-table">
+            <thead>
+                <tr>
+                    <th>Particulars / Description</th>
+                    <th style="text-align: right;">Amount (INR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pending Salary / Basic Earned Pay</td>
+                    <td class="amount-col"><%= pendingSalary %></td>
+                </tr>
+                <tr>
+                    <td>Leave Encashment Settlement</td>
+                    <td class="amount-col"><%= leaveEncashment %></td>
+                </tr>
+                <tr>
+                    <td>Bonus / Performance Incentive</td>
+                    <td class="amount-col"><%= incentive %></td>
+                </tr>
+                <tr>
+                    <td>Other Special Allowances</td>
+                    <td class="amount-col">0.00</td>
+                </tr>
+                <tr>
+                    <td style="color: #dc2626; font-weight: 600;">Deductions (TDS / LWP / Notice Period Recovery)</td>
+                    <td class="amount-col" style="color: #dc2626;">- <%= deductions %></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div class="footer">
-        <span class="footer-brand">Viral Ads Media</span> <span class="footer-tagline">| Digital Creative Agency</span><br>
-        <%= companyAddress %>
+        <!-- Net Amount Card -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+            <tr>
+                <td style="background-color: #fff7ed; border: 2px solid #f27022; border-radius: 8px; padding: 16px 20px;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td class="net-title">TOTAL NET PAYABLE AMOUNT</td>
+                            <td class="net-amount" style="text-align: right;">₹ <%= totalPayable %></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <div class="note-text">
+            <strong>Note:</strong> This document represents the full & final settlement statement between the employee and Viral Ads Media. The net payable amount indicated above will be transferred directly to the designated bank account provided.
+        </div>
+
+        <div class="signature-container">
+            <div class="sig-card">
+                <div class="sig-title">Authorized Signatory</div>
+                <div class="sig-dept">HR & Accounts Department</div>
+                <div class="sig-company">Viral Ads Media</div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span class="footer-brand">Viral Ads Media</span> <span class="footer-tagline">| Digital Creative Agency</span><br>
+            <%= companyAddress %> — Page 2 of 2
+        </div>
     </div>
 
 </body>
