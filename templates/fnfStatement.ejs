@@ -7,123 +7,256 @@
         @page {
             margin: 0.5in;
         }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            color: #333; 
-            line-height: 1.5; 
-            font-size: 13px; 
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #1a1a2e; 
+            line-height: 1.6; 
+            font-size: 13px; 
+            background: #f8f9fa;
+            padding: 40px 0;
+            margin: 0;
         }
 
-        /* Header Styling matching Viral Ads Media */
+        .document-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 45px 50px 35px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        /* Header */
         .header-table {
             width: 100%;
-            border-bottom: 3px solid #f27022; /* Viral Ads Orange accent */
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 4px solid #f27022;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
-       
-
-        .logo { 
-            width: 160px; 
-            height: auto; 
+        .header-table td {
+            vertical-align: middle;
+        }
+        .logo {
+            width: 160px;
+            height: auto;
         }
         .statement-label {
             text-align: right;
-            vertical-align: bottom;
         }
         .statement-title {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 22px;
+            font-weight: 700;
             color: #f27022;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
             margin: 0;
         }
+        .issue-date {
+            font-size: 12px;
+            color: #888;
+            font-weight: 400;
+            display: block;
+            margin-top: 4px;
+        }
 
-        /* Employee Info Grid */
+        /* Info Section */
         .info-section {
             width: 100%;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border-collapse: collapse;
+            background: #fafbfc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .info-section td {
+            padding: 14px 20px;
+            vertical-align: top;
+            border-right: 1px solid #eef0f2;
+        }
+        .info-section td:last-child {
+            border-right: none;
         }
         .info-cell {
             width: 50%;
-            padding: 5px 0;
-            vertical-align: top;
         }
-        .label { font-weight: bold; color: #555; width: 140px; display: inline-block; }
+        .info-cell .label {
+            font-weight: 600;
+            color: #555;
+            display: inline-block;
+            min-width: 130px;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+        }
+        .info-cell .value {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .info-cell br {
+            line-height: 2.2;
+        }
 
         /* Settlement Table */
         .settlement-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 20px 0 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
         .settlement-table th {
-            background-color: #f27022;
-            color: white;
+            background: #f27022;
+            color: #fff;
             text-align: left;
-            padding: 12px;
+            padding: 14px 18px;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
         }
         .settlement-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 14px 18px;
+            border-bottom: 1px solid #edf0f5;
+            background: #fff;
         }
-        .amount-col { text-align: right; font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+        .settlement-table tr:last-child td {
+            border-bottom: none;
+        }
+        .settlement-table .amount-col {
+            text-align: right;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            font-size: 14px;
+        }
         
-        .net-payable-row {
-            background-color: #fff5f0;
-            font-size: 16px;
-            font-weight: bold;
-        }
         .net-payable-row td {
+            background: #fff5f0;
+            font-size: 17px;
+            font-weight: 700;
             color: #f27022;
-            border-top: 2px solid #f27022;
-            border-bottom: 2px solid #f27022;
+            border-top: 3px solid #f27022;
+            border-bottom: 3px solid #f27022;
+            padding: 16px 18px;
+        }
+        .net-payable-row .amount-col {
+            font-size: 19px;
         }
 
-        /* Signatures */
+        /* Note */
+        .disclaimer-note {
+            font-size: 11.5px;
+            margin-top: 15px;
+            padding: 12px 18px;
+            background: #f8f9fb;
+            border-left: 4px solid #f27022;
+            border-radius: 4px;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Signature */
         .signature-section {
-            margin-top: 250px;
+            margin-top: 55px;
             width: 100%;
+            border-collapse: collapse;
+        }
+        .signature-section td {
+            padding: 0 10px;
+            vertical-align: bottom;
         }
         .sig-box {
-            width: 40%;
-            padding-top: 40px;
-            border-top: 1px solid #000;
+            padding-top: 35px;
+            border-top: 2px solid #d0d5dd;
             text-align: center;
+            font-size: 13px;
+            color: #333;
         }
-
-        .footer {
-            position: relative;
-            top:200px;
-            width: 100%;
-            text-align: center;
-            font-size: 15px;
+        .sig-box strong {
+            display: block;
+            font-size: 14px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .sig-box .sub-text {
+            font-size: 11px;
             color: #777;
-            border-top: 1px solid rgb(245, 215, 215);
-            padding-top: 10px;
+            font-weight: 400;
         }
 
-        /* ====================== NEW ADDED STYLES (nothing removed) ====================== */
-        .bank-details {
-            margin-top: 15px;
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
             font-size: 12px;
-            color: #444;
+            color: #999;
+            border-top: 1px solid #e8ebf0;
+            padding-top: 18px;
+            letter-spacing: 0.3px;
+        }
+        .footer strong {
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .document-wrapper {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+            .header-table td {
+                display: block;
+                text-align: center !important;
+            }
+            .statement-label {
+                text-align: center !important;
+                margin-top: 10px;
+            }
+            .info-section td {
+                display: block;
+                width: 100% !important;
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            .info-section td:last-child {
+                border-bottom: none;
+            }
+            .info-cell .label {
+                min-width: 100px;
+            }
+            .signature-section td {
+                display: block;
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+            .sig-box {
+                width: 100% !important;
+            }
+            .settlement-table th,
+            .settlement-table td {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
 
+<div class="document-wrapper">
+
     <table class="header-table">
         <tr>
             <td>
-                <img src="<%= logo %>" class="logo"> </td>
+                <img src="<%= logo %>" class="logo" alt="Viral Ads Media Logo">
+            </td>
             <td class="statement-label">
-                <p class="statement-title">Full & Final Statement</p> <span style="font-size: 11px;">Date of Issue: <%= currentDate %></span>
+                <div class="statement-title">Full & Final Statement</div>
+                <span class="issue-date">Date of Issue: <%= currentDate %></span>
             </td>
         </tr>
     </table>
@@ -131,70 +264,82 @@
     <table class="info-section">
         <tr>
             <td class="info-cell">
-                <span class="label">Employee Name:</span> <strong><%= employeeName %></strong><br> 
-                <span class="label">Employee ID:</span> <%= typeof employeeId !== 'undefined' ? employeeId : 'N/A' %><br>
-                <span class="label">Designation:</span> <%= typeof designation !== 'undefined' ? designation : 'Employee' %><br>
-                <span class="label">Account No:</span><%= typeof bankAccount !== 'undefined' ? bankAccount : 'N/A' %><br>
-                <span class="label">Address:</span> <%= typeof address !== 'undefined' ? address : 'N/A' %>
+                <span class="label">Employee Name:</span> <span class="value"><%= employeeName %></span><br>
+                <span class="label">Employee ID:</span> <span class="value"><%= typeof employeeId !== 'undefined' ? employeeId : 'N/A' %></span><br>
+                <span class="label">Designation:</span> <span class="value"><%= typeof designation !== 'undefined' ? designation : 'Employee' %></span><br>
+                <span class="label">Account No:</span> <span class="value"><%= typeof bankAccount !== 'undefined' ? bankAccount : 'N/A' %></span><br>
+                <span class="label">Address:</span> <span class="value"><%= typeof address !== 'undefined' ? address : 'N/A' %></span>
             </td>
             <td class="info-cell">
-                <span class="label">Date of Joining:</span> <%= dateOfJoining %><br> 
-                <span class="label">Last Working Day:</span> <%= lastWorkingDay %><br> 
-                <span class="label">Contact:</span> <%= phone %> <br>
-                <span class="label">IFSC:</span><%= typeof ifsc !== 'undefined' ? ifsc : 'N/A' %><br>
-                <span class="label">Email:</span><%= email %> <br>
+                <span class="label">Date of Joining:</span> <span class="value"><%= dateOfJoining %></span><br>
+                <span class="label">Last Working Day:</span> <span class="value"><%= lastWorkingDay %></span><br>
+                <span class="label">Contact:</span> <span class="value"><%= phone %></span><br>
+                <span class="label">IFSC:</span> <span class="value"><%= typeof ifsc !== 'undefined' ? ifsc : 'N/A' %></span><br>
+                <span class="label">Email:</span> <span class="value"><%= email %></span>
             </td>
         </tr>
     </table>
 
-    <!-- ====================== NEW ADDED SECTION (nothing removed) ====================== -->
-   
-
     <table class="settlement-table">
         <thead>
             <tr>
-                <th>Particulars</th> <th style="text-align: right;">Amount (INR)</th> </tr>
+                <th>Particulars</th>
+                <th style="text-align: right;">Amount (INR)</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Pending Salary / Basic Pay</td>
-                <td class="amount-col"><%= pendingSalary %></td> </tr>
+                <td class="amount-col"><%= pendingSalary %></td>
+            </tr>
             <tr>
                 <td>Leave Encashment</td>
-                <td class="amount-col"><%= leaveEncashment %></td> </tr>
+                <td class="amount-col"><%= leaveEncashment %></td>
+            </tr>
             <tr>
                 <td>Bonus / Performance Incentive</td>
-                <td class="amount-col"><%= incentive %></td> </tr>
+                <td class="amount-col"><%= incentive %></td>
+            </tr>
             <tr>
                 <td>Other Allowances</td>
                 <td class="amount-col">0.00</td>
             </tr>
             <tr>
-                <td style="color: #d32f2f;">Deductions (TDS/LWP/Notice Recovery)</td>
-                <td class="amount-col" style="color: #d32f2f;">- <%= deductions %></td> </tr>
+                <td style="color: #c62828;">Deductions (TDS/LWP/Notice Recovery)</td>
+                <td class="amount-col" style="color: #c62828;">- <%= deductions %></td>
+            </tr>
             <tr class="net-payable-row">
-                <td>NET PAYABLE AMOUNT</td> <td class="amount-col">₹ <%= totalPayable %></td> </tr>
+                <td>NET PAYABLE AMOUNT</td>
+                <td class="amount-col">₹ <%= totalPayable %></td>
+            </tr>
         </tbody>
     </table>
 
-    <p style="font-size: 11px; margin-top: 20px; font-style: italic;">
+    <div class="disclaimer-note">
         * This is a computer-generated statement. The net payable amount will be credited to your bank account registered with Viral Ads Media.
-    </p>
+    </div>
 
     <table class="signature-section">
         <tr>
             <td class="sig-box">
-                <strong>Prepared By</strong><br> HR & Accounts Department<br>
-                Viral Ads Media </td>
-            <td style="width: 10%;"></td>
+                <strong>Prepared By</strong>
+                <span class="sub-text">HR &amp; Accounts Department</span><br>
+                <span class="sub-text">Viral Ads Media</span>
+            </td>
+            <td style="width: 15%;"></td>
             <td class="sig-box">
-                <strong>Employee Acknowledgment</strong><br> Name: <%= employeeName %> </td>
+                <strong>Employee Acknowledgment</strong>
+                <span class="sub-text">Name: <%= employeeName %></span>
+            </td>
         </tr>
     </table>
 
     <div class="footer">
-        <strong>Viral Ads Media</strong> | Digital Creative Agency <br>
-        <%= companyAddress %> </div>
+        <strong>Viral Ads Media</strong> &nbsp;|&nbsp; Digital Creative Agency<br>
+        <%= companyAddress %>
+    </div>
+
+</div>
 
 </body>
 </html>
