@@ -1,22 +1,24 @@
-const puppeteer = require('puppeteer-core');
-const chromium = require('@sparticuz/chromium');
 const ejs = require('ejs');
 const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const htmlPDF = require('html-pdf-node');
 
 const sendAppointmentLetter = async (email, data) => {
+    // 1. Resolve Template Path
     const templatePath = path.join(__dirname, '../templates/appointmentLetter.ejs');
 
+    // 2. Read Logo as Base64
     let logoBase64 = "";
     try {
         const logoPath = path.join(__dirname, '../assets/blackLogo.png');
         const bitmap = fs.readFileSync(logoPath);
         logoBase64 = `data:image/png;base64,${bitmap.toString('base64')}`;
     } catch (err) { 
-        console.error("Logo missing for Appointment Letter"); 
+        console.error("Logo missing for Appointment Letter:", err); 
     }
 
+    // 3. Render HTML using EJS
     const html = await ejs.renderFile(templatePath, {
         logo: logoBase64,
         offerId: data.offerId,
@@ -32,43 +34,23 @@ const sendAppointmentLetter = async (email, data) => {
         hrName: data.hrName
     });
 
-    let browser = null;
+    // 4. Generate PDF using html-pdf-node
     let pdfBuffer;
+    const options = { 
+        format: 'A4', 
+        margin: { top: 15, right: 25, bottom: 15, left: 25 },
+        printBackground: true 
+    };
+    const file = { content: html };
 
     try {
-        // Optimized chromium launch for Shared Hosting
-        browser = await puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath(),
-            headless: chromium.headless,
-        });
-
-        const page = await browser.newPage();
-
-        await page.setContent(html, {
-            waitUntil: 'networkidle0'
-        });
-
-        pdfBuffer = await page.pdf({
-            format: 'A4',
-            printBackground: true,
-            margin: {
-                top: '0.15in',
-                right: '0.25in',
-                bottom: '0.15in',
-                left: '0.25in'
-            }
-        });
-    } catch (browserError) {
-        console.error("Puppeteer Launch Error:", browserError);
-        throw new Error("Failed to generate PDF: " + browserError.message);
-    } finally {
-        if (browser !== null) {
-            await browser.close();
-        }
+        pdfBuffer = await htmlPDF.generatePdf(file, options);
+    } catch (pdfError) {
+        console.error("PDF Generation Error:", pdfError);
+        throw new Error("Failed to generate PDF: " + pdfError.message);
     }
 
+    // 5. Construct Email HTML
     const emailHtml = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
         <h2 style="color: #f27022;">Congratulations, ${data.employeeName}!</h2>
@@ -90,6 +72,7 @@ const sendAppointmentLetter = async (email, data) => {
     </div>
     `;
 
+    // 6. Setup Transporter
     const transporter = nodemailer.createTransport({
         host: "smtp.titan.email",
         port: 465,
@@ -100,6 +83,7 @@ const sendAppointmentLetter = async (email, data) => {
         }
     });
 
+    // 7. Send Mail
     try {
         await transporter.sendMail({
             from: `"Viral Ads Media HR" <${process.env.EMAIL_USER}>`,
