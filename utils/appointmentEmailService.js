@@ -1,4 +1,5 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 const ejs = require('ejs');
 const path = require('path');
 const fs = require('fs');
@@ -31,31 +32,42 @@ const sendAppointmentLetter = async (email, data) => {
         hrName: data.hrName
     });
 
-    // Generate PDF using Puppeteer (more reliable for deployment)
-    const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
-    
-    const page = await browser.newPage();
-    
-    // Set content with proper viewport
-    await page.setContent(html, {
-        waitUntil: 'networkidle0'
-    });
-    
-    // Generate PDF
-    const pdfBuffer = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        margin: {
-            top: '0.15in',
-            right: '0.25in',
-            bottom: '0.15in',
-            left: '0.25in'
+    let browser = null;
+    let pdfBuffer;
+
+    try {
+        // Optimized chromium launch for Shared Hosting
+        browser = await puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath(),
+            headless: chromium.headless,
+        });
+
+        const page = await browser.newPage();
+
+        await page.setContent(html, {
+            waitUntil: 'networkidle0'
+        });
+
+        pdfBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true,
+            margin: {
+                top: '0.15in',
+                right: '0.25in',
+                bottom: '0.15in',
+                left: '0.25in'
+            }
+        });
+    } catch (browserError) {
+        console.error("Puppeteer Launch Error:", browserError);
+        throw new Error("Failed to generate PDF: " + browserError.message);
+    } finally {
+        if (browser !== null) {
+            await browser.close();
         }
-    });
-    
-    await browser.close();
+    }
 
     const emailHtml = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
