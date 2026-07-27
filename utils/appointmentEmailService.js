@@ -2,7 +2,7 @@ const ejs = require('ejs');
 const path = require('path');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const htmlPDF = require('html-pdf-node');
+const pdf = require('html-pdf');
 
 const sendAppointmentLetter = async (email, data) => {
     // 1. Resolve Template Path
@@ -34,21 +34,15 @@ const sendAppointmentLetter = async (email, data) => {
         hrName: data.hrName
     });
 
-    // 4. Generate PDF using html-pdf-node
-    let pdfBuffer;
-    const options = { 
-        format: 'A4', 
-        margin: { top: 15, right: 25, bottom: 15, left: 25 },
-        printBackground: true 
-    };
-    const file = { content: html };
+    // 4. Generate PDF using Phantom-based html-pdf (No Puppeteer dependency)
+    const options = { format: 'A4', border: '10mm' };
 
-    try {
-        pdfBuffer = await htmlPDF.generatePdf(file, options);
-    } catch (pdfError) {
-        console.error("PDF Generation Error:", pdfError);
-        throw new Error("Failed to generate PDF: " + pdfError.message);
-    }
+    const pdfBuffer = await new Promise((resolve, reject) => {
+        pdf.create(html, options).toBuffer((err, buffer) => {
+            if (err) return reject(err);
+            resolve(buffer);
+        });
+    });
 
     // 5. Construct Email HTML
     const emailHtml = `
